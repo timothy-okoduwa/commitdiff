@@ -1,6 +1,8 @@
 # CommitDiff
 
-<div align="center">
+[![npm version](https://img.shields.io/npm/v/commitdiff.svg)](https://www.npmjs.com/package/commitdiff)
+[![npm downloads](https://img.shields.io/npm/dm/commitdiff.svg)](https://www.npmjs.com/package/commitdiff)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![CommitDiff Banner](https://img.shields.io/badge/CommitDiff-AI%20Powered-blue?style=for-the-badge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![GitHub Stars](https://img.shields.io/github/stars/timothy-okoduwa/commitdiff?style=for-the-badge)](https://github.com/timothy-okoduwa/commitdiff/stargazers)

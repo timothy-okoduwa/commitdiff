@@ -1,6 +1,6 @@
 {
   "name": "commitdiff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AI-powered git commit message generator",
   "main": "dist/index.js",
   "bin": {
@@ -29,7 +29,9 @@
   },
   "homepage": "https://commitdiff.vercel.app",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "dependencies": {
     "commander": "^12.1.0"
