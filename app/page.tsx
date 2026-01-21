@@ -44,7 +44,7 @@ export default function Home() {
               </Link>
 
               <a
-                href="https://github.com/yourusername/commitdiff"
+                href="https://github.com/timothy-okoduwa/commitdiff"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl font-semibold text-lg transition-all hover:scale-105 flex items-center gap-2"
@@ -532,16 +532,7 @@ export default function Home() {
                   </span>
                 </summary>
                 <p className="text-gray-400 mt-4 leading-relaxed">
-                  Yes. You need an OpenRouter API key. Get one free at{" "}
-                  <a
-                    href="https://openrouter.ai"
-                    className="text-blue-400 hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    openrouter.ai
-                  </a>
-                  . Set it in your .env file or environment variables.
+                  No. You do not need an API key{" "}
                 </p>
               </details>
 
@@ -586,10 +577,7 @@ export default function Home() {
                   </span>
                 </summary>
                 <p className="text-gray-400 mt-4 leading-relaxed">
-                  The tool itself is free and open source. You only pay for
-                  OpenRouter API usage, which uses GPT-4o-mini (one of the
-                  cheapest models). Most developers spend less than $1/month on
-                  API costs.
+                  The tool is free and open source.
                 </p>
               </details>
             </div>
@@ -617,7 +605,7 @@ export default function Home() {
               </Link>
 
               <a
-                href="https://github.com/yourusername/commitdiff"
+                href="https://github.com/timothy-okoduwa/commitdiff"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl font-semibold text-lg transition-all"
@@ -647,7 +635,7 @@ export default function Home() {
                 </p>
                 <div className="flex gap-4">
                   <a
-                    href="https://github.com/yourusername/commitdiff"
+                    href="https://github.com/timothy-okoduwa/commitdiff"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
@@ -662,7 +650,7 @@ export default function Home() {
                     </svg>
                   </a>
                   <a
-                    href="https://twitter.com/yourusername"
+                    href="https://twitter.com/timothyokoduwa"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
@@ -693,7 +681,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="https://github.com/yourusername/commitdiff"
+                      href="https://github.com/timothy-okoduwa/commitdiff"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
@@ -703,22 +691,12 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="https://github.com/yourusername/commitdiff/issues"
+                      href="https://github.com/timothy-okoduwa/commitdiff/issues"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
                     >
                       Report Issues
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://openrouter.ai"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white transition-colors"
-                    >
-                      Get API Key
                     </a>
                   </li>
                 </ul>
@@ -740,7 +718,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="https://github.com/yourusername/commitdiff/blob/main/CONTRIBUTING.md"
+                      href="https://github.com/timothy-okoduwa/commitdiff/blob/main/CONTRIBUTING.md"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
@@ -750,7 +728,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="https://github.com/yourusername/commitdiff/blob/main/LICENSE"
+                      href="https://github.com/timothy-okoduwa/commitdiff/blob/main/LICENSE"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
@@ -760,7 +738,7 @@ export default function Home() {
                   </li>
                   <li>
                     <a
-                      href="https://github.com/yourusername/commitdiff/releases"
+                      href="https://github.com/timothy-okoduwa/commitdiff/releases"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-white transition-colors"
