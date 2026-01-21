@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// packages/cli/src/index.ts
 import { Command } from "commander";
 import { execSync } from "child_process";
 // Use your production Vercel URL
@@ -13,11 +14,17 @@ async function generateCommitMessage(diff) {
             body: JSON.stringify({ diff }),
         });
         if (!response.ok) {
-            const error = await response
-                .json()
-                .catch(() => ({ error: "Unknown error" }));
-            const errorMessage = error.error ||
-                `API error: ${response.status}`;
+            // Better error logging
+            const errorText = await response.text();
+            console.error("API Response:", errorText); // Add this line
+            let error;
+            try {
+                error = JSON.parse(errorText);
+            }
+            catch {
+                error = { error: errorText || "Unknown error" };
+            }
+            const errorMessage = error.error || `API error: ${response.status}`;
             throw new Error(String(errorMessage));
         }
         const data = (await response.json());
