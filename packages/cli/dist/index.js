@@ -3,58 +3,35 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander_1 = require("commander");
 const child_process_1 = require("child_process");
-// Default API key - users can override with their own if they want
-const DEFAULT_API_KEY = "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"; // Replace with your actual API key
+// This will point to your deployed backend
+const API_ENDPOINT = "https://commitdiff.vercel.app/api/cli-generate";
 async function generateCommitMessage(diff) {
-    // Use environment variable if provided, otherwise fall back to default
-    const apiKey = process.env.OPENROUTER_API_KEY || DEFAULT_API_KEY;
-    if (!apiKey ||
-        apiKey ===
-            "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") {
-        throw new Error("API key not configured. Please contact the developer.");
+    try {
+        const response = await fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ diff }),
+        });
+        if (!response.ok) {
+            const error = (await response
+                .json()
+                .catch(() => ({ error: "Unknown error" })));
+            throw new Error(error.error || `API error: ${response.status}`);
+        }
+        const data = (await response.json());
+        return {
+            title: data.title || "Update code",
+            summary: data.summary || "No summary available",
+        };
     }
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${apiKey}`,
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://commitdiff.dev",
-            "X-Title": "CommitDiff",
-        },
-        body: JSON.stringify({
-            model: "openai/gpt-4o-mini",
-            messages: [
-                {
-                    role: "system",
-                    content: `You are a senior software engineer.
-Analyze the provided git diff and generate:
-1. A concise, professional git commit title.
-2. A short bullet-point summary of the changes.
-
-Follow conventional commit style when possible.
-Avoid vague phrases like "update stuff".
-Output in JSON with fields: title, summary.`,
-                },
-                {
-                    role: "user",
-                    content: `Generate a commit message for this diff:\n\n${diff}`,
-                },
-            ],
-            temperature: 0.7,
-            response_format: { type: "json_object" },
-        }),
-    });
-    if (!response.ok) {
-        const error = await response.text();
-        throw new Error(`OpenRouter API error: ${response.status} - ${error}`);
+    catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`Failed to generate commit message: ${error.message}`);
+        }
+        throw new Error("Failed to generate commit message");
     }
-    const data = (await response.json());
-    const content = data.choices[0].message.content;
-    const parsed = JSON.parse(content);
-    return {
-        title: parsed.title || parsed.message || "Update code",
-        summary: parsed.summary || parsed.description || "No summary available",
-    };
 }
 function getStagedDiff() {
     try {

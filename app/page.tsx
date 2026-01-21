@@ -289,20 +289,7 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-lg font-semibold mb-3 text-blue-400">
-                      2. Set API Key
-                    </h4>
-                    <div className="bg-black rounded-lg p-4 font-mono text-sm space-y-2">
-                      <code className="text-gray-400"># Create .env file</code>
-                      <br />
-                      <code className="text-green-400">
-                        echo "OPENROUTER_API_KEY=your_key" &gt; .env
-                      </code>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-lg font-semibold mb-3 text-blue-400">
-                      3. Use It
+                      2. Use It
                     </h4>
                     <div className="bg-black rounded-lg p-4 font-mono text-sm space-y-2">
                       <code className="text-gray-400">
