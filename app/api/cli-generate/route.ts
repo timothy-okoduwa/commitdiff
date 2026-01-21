@@ -1,24 +1,10 @@
+// app/api/cli-generate/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 // Create a new ratelimiter that allows 10 requests per 10 seconds
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, "10 s"),
-  analytics: true,
-});
-export async function POST(request: NextRequest) {
-    // Rate limit by IP
-  const ip = request.headers.get("x-forwarded-for") ?? request.headers.get("x-real-ip") ?? "127.0.0.1";
-  const { success } = await ratelimit.limit(ip);
 
-  if (!success) {
-    return NextResponse.json(
-      { error: "Too many requests. Please try again later." },
-      { status: 429 }
-    );
-  }
+export async function POST(request: NextRequest) {
   try {
     const { diff } = await request.json();
 

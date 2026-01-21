@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const commander_1 = require("commander");
-const child_process_1 = require("child_process");
-// This will point to your deployed backend
+import { Command } from "commander";
+import { execSync } from "child_process";
+// Use your production Vercel URL
 const API_ENDPOINT = "https://commitdiff.vercel.app/api/cli-generate";
 async function generateCommitMessage(diff) {
     try {
@@ -15,10 +13,12 @@ async function generateCommitMessage(diff) {
             body: JSON.stringify({ diff }),
         });
         if (!response.ok) {
-            const error = (await response
+            const error = await response
                 .json()
-                .catch(() => ({ error: "Unknown error" })));
-            throw new Error(error.error || `API error: ${response.status}`);
+                .catch(() => ({ error: "Unknown error" }));
+            const errorMessage = error.error ||
+                `API error: ${response.status}`;
+            throw new Error(String(errorMessage));
         }
         const data = (await response.json());
         return {
@@ -35,13 +35,13 @@ async function generateCommitMessage(diff) {
 }
 function getStagedDiff() {
     try {
-        return (0, child_process_1.execSync)("git diff --staged", { encoding: "utf-8" });
+        return execSync("git diff --staged", { encoding: "utf-8" });
     }
     catch (error) {
         throw new Error("Failed to get git diff. Are you in a git repository?");
     }
 }
-const program = new commander_1.Command();
+const program = new Command();
 program
     .name("commitdiff")
     .description("AI-powered git commit message generator")
@@ -70,7 +70,7 @@ program
         console.log("");
         if (options.commit) {
             console.log("🚀 Auto-committing...");
-            (0, child_process_1.execSync)(`git commit -m "${result.title.replace(/"/g, '\\"')}"`, {
+            execSync(`git commit -m "${result.title.replace(/"/g, '\\"')}"`, {
                 stdio: "inherit",
             });
             console.log("✅ Committed successfully!");

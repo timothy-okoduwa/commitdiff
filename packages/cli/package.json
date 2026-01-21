@@ -6,8 +6,8 @@
   "bin": {
     "commitdiff": "./dist/index.js"
   },
+  "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts",
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
@@ -15,16 +15,27 @@
     "git",
     "commit",
     "ai",
+    "conventional-commits",
     "cli"
   ],
+  "author": "Your Name",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timothy-okoduwa/commitdiff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timothy-okoduwa/commitdiff/issues"
+  },
+  "homepage": "https://commitdiff.vercel.app",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "commander": "^12.0.0",
-    "dotenv": "^16.4.1"
+    "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.3"
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
   }
 }
