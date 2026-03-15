@@ -23,7 +23,7 @@ export async function generateCommitMessage(
         "X-Title": "CommitDiff",
       },
       body: JSON.stringify({
-        model: "openai/gpt-4o-mini",
+        model: "deepseek/deepseek-chat", // Free DeepSeek model
         messages: [
           {
             role: "system",

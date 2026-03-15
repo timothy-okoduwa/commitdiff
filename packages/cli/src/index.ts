@@ -3,7 +3,9 @@
 import { Command } from "commander";
 import { execSync } from "child_process";
 
-// Use your production Vercel URL
+// Import package.json - works with CommonJS
+const packageJson = require("../package.json");
+
 const API_ENDPOINT = "https://commitdiff.vercel.app/api/cli-generate";
 
 interface CommitMessage {
@@ -22,9 +24,8 @@ async function generateCommitMessage(diff: string): Promise<CommitMessage> {
     });
 
     if (!response.ok) {
-      // Better error logging
       const errorText = await response.text();
-      console.error("API Response:", errorText); // Add this line
+      console.error("API Response:", errorText);
 
       let error;
       try {
@@ -67,7 +68,7 @@ const program = new Command();
 program
   .name("commitdiff")
   .description("AI-powered git commit message generator")
-  .version("1.0.0");
+  .version(packageJson.version);
 
 program
   .option("--commit", "Automatically commit with generated message")
@@ -88,7 +89,7 @@ program
         process.exit(1);
       }
 
-      console.log("🤖 Generating commit message with AI...\n");
+      console.log("🤖 Generating commit message with DeepSeek AI (FREE)...\n");
 
       const result = await generateCommitMessage(diff);
 

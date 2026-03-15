@@ -1,12 +1,11 @@
 {
   "name": "commitdiff",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "AI-powered git commit message generator",
   "main": "dist/index.js",
   "bin": {
-    "commitdiff": "./dist/index.js"
+    "commitdiff": "dist/index.js"
   },
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
@@ -22,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/timothy-okoduwa/commitdiff.git"
+    "url": "git+https://github.com/timothy-okoduwa/commitdiff.git"
   },
   "bugs": {
     "url": "https://github.com/timothy-okoduwa/commitdiff/issues"

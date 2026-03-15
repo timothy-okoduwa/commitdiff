@@ -1,8 +1,11 @@
 #!/usr/bin/env node
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // packages/cli/src/index.ts
-import { Command } from "commander";
-import { execSync } from "child_process";
-// Use your production Vercel URL
+const commander_1 = require("commander");
+const child_process_1 = require("child_process");
+// Import package.json - works with CommonJS
+const packageJson = require("../package.json");
 const API_ENDPOINT = "https://commitdiff.vercel.app/api/cli-generate";
 async function generateCommitMessage(diff) {
     try {
@@ -14,9 +17,8 @@ async function generateCommitMessage(diff) {
             body: JSON.stringify({ diff }),
         });
         if (!response.ok) {
-            // Better error logging
             const errorText = await response.text();
-            console.error("API Response:", errorText); // Add this line
+            console.error("API Response:", errorText);
             let error;
             try {
                 error = JSON.parse(errorText);
@@ -42,17 +44,17 @@ async function generateCommitMessage(diff) {
 }
 function getStagedDiff() {
     try {
-        return execSync("git diff --staged", { encoding: "utf-8" });
+        return (0, child_process_1.execSync)("git diff --staged", { encoding: "utf-8" });
     }
     catch (error) {
         throw new Error("Failed to get git diff. Are you in a git repository?");
     }
 }
-const program = new Command();
+const program = new commander_1.Command();
 program
     .name("commitdiff")
     .description("AI-powered git commit message generator")
-    .version("1.0.0");
+    .version(packageJson.version);
 program
     .option("--commit", "Automatically commit with generated message")
     .option("--style <type>", "Commit style: conventional | short | detailed", "conventional")
@@ -65,7 +67,7 @@ program
             console.log("💡 Stage your changes first: git add <files>");
             process.exit(1);
         }
-        console.log("🤖 Generating commit message with AI...\n");
+        console.log("🤖 Generating commit message with DeepSeek AI (FREE)...\n");
         const result = await generateCommitMessage(diff);
         console.log("✨ Generated Commit Message:\n");
         console.log(`📝 ${result.title}\n`);
@@ -77,7 +79,7 @@ program
         console.log("");
         if (options.commit) {
             console.log("🚀 Auto-committing...");
-            execSync(`git commit -m "${result.title.replace(/"/g, '\\"')}"`, {
+            (0, child_process_1.execSync)(`git commit -m "${result.title.replace(/"/g, '\\"')}"`, {
                 stdio: "inherit",
             });
             console.log("✅ Committed successfully!");
